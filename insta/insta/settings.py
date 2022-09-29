@@ -93,17 +93,8 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+        'NAME': 'user.validators.CustomPasswordValidator',
+    }
 ]
 
 
@@ -142,6 +133,14 @@ AUTHENTICATION_BACKENDS = [
 
 ACCOUNT_SIGNUP_REDIRECT_URL = "index" 
 LOGIN_REDIRECT_URL = "index" 
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SESSION_REMEMBER = True
+SESSION_COOKIE_AGE = 3600
+ACCOUNT_SIGNUP_FORM_CLASS = "user.forms.SignupForm" 
+ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True 
 
 #Email settings
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" 
