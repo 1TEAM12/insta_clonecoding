@@ -3,9 +3,12 @@
 {% load static %}
 
 {% block header %}
-<header class="site-header only-logo max-content-width">
-  <a href="{% url 'index' %}">
-    <img class="logo" src="{% static 'coplate/assets/coplate-logo.svg' %}" alt="Coplate Logo">
-  </a>
-</header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="justify-content: space-between; flex-wrap: nowrap; min-width: 1000px;">
+            <a class="navbar-brand" href="#"><img style="width: 100px;"
+                                                  src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png"></a>
+        </div>
+    </nav>
+
 {% endblock header %}
