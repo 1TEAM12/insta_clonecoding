@@ -24,10 +24,8 @@
 
 ## ****🕸 와이어 프레임****
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56c93b2c-d76a-4879-82af-3ab079236ea5/Untitled.png)
+
 
 ## ****🎯 데이터베이스****
-
-![image.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ff5ed031-03cc-4dc7-ba99-16042344f917/image.png)
 
 ## ****🎨 API 설계****
