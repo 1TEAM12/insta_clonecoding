@@ -4,7 +4,7 @@ from .validators import validate_no_special_characters
 
 # Create your models here.
 class User(AbstractUser):
-    nickname = models.CharField(
+    username = models.CharField(
         max_length=15,
         unique=True,
         null=True,

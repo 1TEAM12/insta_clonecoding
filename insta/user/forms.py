@@ -6,8 +6,8 @@ class SignupForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ["nickname"]
+        fields = ["username"]
         
     def signup(self, request, user):
-        user.nickname = self.cleaned_data["nickname"]
+        user.username = self.cleaned_data["username"]
         user.save()

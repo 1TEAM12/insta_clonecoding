@@ -4,9 +4,7 @@ from allauth.account.views import PasswordChangeView
 
 # Create your views here.
 
-def index(request):
-    return render(request, "user/index.html")
-
 class CustomPasswordChangeView(PasswordChangeView):
     def get_success_url(self):
         return reverse("index")
+    

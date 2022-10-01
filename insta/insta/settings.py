@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites', 
     'user',
+    'post',
     'widget_tweaks',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +116,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATICFILES_DIRS = [
+BASE_DIR/'static',
+]
+
 STATIC_URL = 'static/'
 
 # Default primary key field type
@@ -132,20 +138,20 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_SIGNUP_REDIRECT_URL = "index" 
+ACCOUNT_SIGNUP_REDIRECT_URL = "account_login" 
 LOGIN_REDIRECT_URL = "index" 
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SESSION_REMEMBER = True
 SESSION_COOKIE_AGE = 3600
 ACCOUNT_SIGNUP_FORM_CLASS = "user.forms.SignupForm" 
 ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True 
-ACCOUNT_EMAIL_VARIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True 
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "account_email_confirmation_done"
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL ="account_email_confirmation_done"
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_email_confirmation_done"
+
 
 #Email settings
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" 

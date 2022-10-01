@@ -21,14 +21,24 @@ from user.views import CustomPasswordChangeView
 urlpatterns = [
     #admin
     path('admin/', admin.site.urls),
+    
     #user
     path('', include('user.urls')),
+    
+    #post
+    path('',include('post.urls')),
+    
     #allauth
-    path( 
-            'email-confirmation-done/',
-            TemplateView.as_view(template_name="user/email_confirmation_done.html"),
-            name='account_email_confirmation_done',
-        ),
+    path(
+        'email-confirmation-done/',
+        TemplateView.as_view(template_name='account/email_confirmation_done.html'),
+        name='account_email_confirmation_done',
+    ),
+    path(
+        'confirm-email/',
+        TemplateView.as_view(template_name='account/confirm-email.html'),
+        name='account_confirm_email',
+    ),
     path(
             'password/change/',
             CustomPasswordChangeView.as_view(),

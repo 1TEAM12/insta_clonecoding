@@ -2,51 +2,66 @@
 
 {% load static %}
 {% load widget_tweaks %}
+{% load socialaccount %}
 
-{% block title %}회원가입 | Coplate{% endblock title %}
+{% block title %}회원가입 | Sparkling Coffee Club{% endblock title %}
 
 {% block content %}
-<div class="account-background">
-  <main class="account">
-    <div class="title">
-      <a href="{% url 'index' %}">
-        <img class="logo" src="{% static 'coplate/assets/coplate-logo.svg' %}" alt="Coplate Logo">
-      </a>
+    <div id="main_container">
+        <div class="form_container">
+            <div class="form">
+                <div class="title_cover">
+                    <a href="{% url 'account_login'%}">
+                        <h1 class="sprite_insta_big_logo title"></h1>
+                    </a>
+                </div>
+                <form method="post" >{% csrf_token %}
+                    <div class="sign_up_text">
+                    친구들의 사진과 동영상을 보려면 가입하세요. 
+                    </div>
+                    <p>
+                    <a href="{% provider_login_url 'kakao' %}" style="text-decoration : none">
+                        <div style="background-image:url('../../static/user/assets/kakao_login_button.png'); font-size:15px; height:30px; text-align:center;border-radius:5px;padding-top:4px">카카오 로그인</div>
+                    </a>
+                    <hr>
+                    <div>
+                        {{ form.email|add_class:"cp-input"|attr:"placeholder:이메일"|add_error_class:"error" }}
+                        {% for error in form.email.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <p>
+                    <div>
+                        {{ form.username|add_class:"cp-input"|attr:"placeholder:닉네임(프로필에서 사용되는 이름입니다)"|add_error_class:"error" }}
+                        {% for error in form.username.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <p>
+                    <div>
+                        {{ form.password1|add_class:"cp-input"|attr:"placeholder:비밀번호"|add_error_class:"error" }}
+                        {% for error in form.password1.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <p>
+                    <div>
+                        {{ form.password2|add_class:"cp-input"|attr:"placeholder:비밀번호 확인"|add_error_class:"error" }}
+                        {% for error in form.password2.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <p>
+                    <input type="submit" id="submit_btn" value="가입" class="submit_btn">
+                </form>
+            </div>
+            <div class="bottom_box">
+                <div>
+                    <span>계정이 있으신가요?</span>
+                    <a class="sign_user_btn_color" href="{% url "account_login"%}" >로그인</a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <form method="post">
-      {% csrf_token %}
-      <div>
-        {{ form.email|add_class:"cp-input"|attr:"placeholder:이메일"|add_error_class:"error" }}
-        {% for error in form.email.errors %}
-          <div class="error-message">{{ error }}</div>
-        {% endfor %}
-      </div>
-      <div>
-        
-        {{ form.nickname|add_class:"cp-input"|attr:"placeholder:닉네임 (Coplate에서 사용되는 이름입니다)"|add_error_class:"error" }}
-        {% for error in form.nickname.errors %}
-          <div class="error-message">{{ error }}</div>
-        {% endfor %}
-      </div>
-      <div>
-        {{ form.password1|add_class:"cp-input"|attr:"placeholder:비밀번호"|add_error_class:"error" }}
-        {% for error in form.password1.errors %}
-          <div class="error-message">{{ error }}</div>
-        {% endfor %}
-      </div>
-      <div>
-        {{ form.password2|add_class:"cp-input"|attr:"placeholder:비밀번호 확인"|add_error_class:"error" }}
-        {% for error in form.password2.errors %}
-          <div class="error-message">{{ error }}</div>
-        {% endfor %}    
-      </div>
-      <button class="cp-button" type="submit">회원가입</button>
-    </form>
-
-    <div class="info">
-      이미 회원이신가요?<a class="link" href="{% url 'account_login' %}">로그인</a>
-    </div>
-  </main>
 </div>
 {% endblock content %}
