@@ -25,7 +25,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     pk_url_kwarg = "post_id"
 
 
-class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = "post/new_post.html"
@@ -36,9 +36,6 @@ class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     
     def get_success_url(self):
         return reverse("post-detail", kwargs={"post_id": self.object.id})
-    
-    def test_func(self, user):
-        return EmailAddress.objects.filter(user=user, verified=True).exists()
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin , UpdateView):
     model = Post

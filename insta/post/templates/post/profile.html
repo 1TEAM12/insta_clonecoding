@@ -44,7 +44,7 @@
             <div class="mylist_contents contents_container active">
                 {% for post in user_post %}
                     <div class="pic">
-                        <a href="{% url 'post-detail' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+                        <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
                     </div>
                 {% endfor %}
             </div>
