@@ -1,0 +1,29 @@
+{% extends "post_base/base_with_header.html" %}
+
+{% block content %}
+    <div id="main_container">
+        <div class="form_container ">
+            <form class="form" method="post">{% csrf_token %}
+                <div class="sign_up_text">
+                    <br>
+                    <p>정말 피드를 삭제하시겠습니까?</p>
+                    <br>
+                    <button class="submit_btn" type="submit">삭제</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="main_container">
+        <div class="form_container ">
+            <div class="form">
+                <div class="sign_up_text">
+                    <br>
+                        <p>시작하려면 로그인이 필요합니다. </p>
+                        <a class="sign_user_btn_color" href="{% url "account_login"%}">로그인</a>
+                        <a class="sign_user_btn_color" href="{% url "account_signup"%}">회원가입</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

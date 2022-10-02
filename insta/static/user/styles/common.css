@@ -114,12 +114,15 @@ body {
 
 .sprite_unlock_icon {
     display: inline-block;
-	background: url('/static/imgs/unlock.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: left top; 
-    width: 28px;
-    height: 28px;
+	background: url('/static/imgs/background01.png') no-repeat -300px -52px;
+	width: 18px;
+	height: 24px;
+}
+
+.sprite_insta_color_camera{
+	background: url('/static/imgs/background01.png') no-repeat -74px -128px;
+	width: 60px;
+	height: 60px;
 }
 
 
@@ -234,7 +237,7 @@ body {
 }
 
 #header .right_icons {
-    width: 132px;
+    width: 170px;
     display: flex;
     justify-content: space-between;
 }

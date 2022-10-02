@@ -1,0 +1,83 @@
+
+{% extends "post_base/base_with_header.html" %}
+
+{% load static %}
+{% block title %} {{ profile_user.username }} | Sparkling Coffee Club {% endblock title%}
+{% block content %}
+<section id="container">
+    <div id="main_container">
+        <section class="b_inner">
+            <div class="hori_cont">
+                <div class="profile_wrap">
+                    <div class="profile_img">
+                        <img src="{{ profile_user.profile_image.url }}" alt="프로필이미지">
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="top">
+                        <div class="user_name">{{ profile_user.username }}</div>
+                        <a href="profile_edit.html" class="profile_edit">프로필편집</a>
+                    </div>
+                    <div>
+                        <p class="cp-chip intro">{{ profile_user.intro }}</p>
+                    </div>
+                    {% comment %} <ul class="middle">
+                        <li>
+                            <span>게시물</span>
+                            3
+                        </li>
+                        <li>
+                            <span>팔로워</span>
+                            3
+                        </li>
+                        <li>
+                            <span>팔로우</span>
+                            3
+                        </li>
+                    </ul> {% endcomment %}
+                    {% comment %} <p class="about">
+                        <span class="nick_name">kindtigerrr</span>
+                        <span class="book_mark">bookmark</span>
+                    </p> {% endcomment %}
+                </div>
+            </div>
+            <div class="mylist_contents contents_container active">
+                {% for post in user_post %}
+                    <div class="pic">
+                        <a href="{% url 'post-detail' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="bookmark_contents contents_container">
+                <div class="pic">
+                    <a href="#"><img src="imgs/img_section/img03.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"><img src="imgs/img_section/img01.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="imgs/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="imgs/img_section/img01.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="imgs/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="imgs/img_section/img03.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="imgs/img_section/img01.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="imgs/img_section/img02.jpg" alt=""></a>
+                </div>
+                <div class="pic">
+                    <a href="#"> <img src="imgs/img_section/img02.jpg" alt=""></a>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+{% endblock content %}

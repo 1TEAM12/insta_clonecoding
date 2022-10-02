@@ -159,10 +159,9 @@ ul.navbar li {
   min-width: auto;
 }
 
-.content-list .content .thumb {
+.image_thum {
   display: block;
-  height: 167px;
-  border-radius: 18px;
+  height: 500px;
   background-position: center;
   background-size: cover;
 }
