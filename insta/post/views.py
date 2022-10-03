@@ -9,7 +9,7 @@ from django.views.generic import (
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from user.models import User
-from .forms import PostForm
+from .forms import PostForm,ProfileForm
 
 # Create your views here.
 
@@ -25,20 +25,16 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     pk_url_kwarg = "post_id"
 
 
-class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = "post/new_post.html"
-    
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
     
     def get_success_url(self):
         return reverse("post-detail", kwargs={"post_id": self.object.id})
-    
-    def test_func(self, user):
-        return EmailAddress.objects.filter(user=user, verified=True).exists()
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin , UpdateView):
     model = Post
@@ -71,7 +67,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return post.author == user
 
 
-class ProfileView(DetailView):
+class ProfileView(LoginRequiredMixin,DetailView):
     model = User
     template_name = "post/profile.html"
     pk_url_kwarg = "user_id"
@@ -82,3 +78,25 @@ class ProfileView(DetailView):
         user_id = self.kwargs.get("user_id")
         context["user_post"] = Post.objects.filter(author__id=user_id).order_by("-created_at")
         return context
+
+class ProfileSetView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = "post/profile_set_form.html"
+    
+    def get_object(self, queryset=None):
+        return self.request.user
+    
+    def get_success_url(self):
+        return reverse("index")
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = "post/profile_update_form.html"
+    
+    def get_object(self, queryset=None):
+        return self.request.user
+    
+    def get_success_url(self):
+        return reverse("profile", kwargs=({"user_id": self.request.user.id}))
