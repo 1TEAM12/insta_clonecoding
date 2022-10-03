@@ -4,4 +4,13 @@ from .models import User
 # Register your models here.
 
 admin.site.register(User, UserAdmin)
-UserAdmin.fieldsets += (("Profile fields", {"fields": ("profile_image", "intro")}),)
+
+class UserInline(admin.StackedInline):
+    model = User.following.through
+    fk_name = 'to_user'
+    verbose_name = 'Follower'
+    verbose_name_plural = 'Followers'
+    
+UserAdmin.fieldsets += (("Profile fields", {"fields": ("profile_image", "intro", "following")}),)
+UserAdmin.inlines = (UserInline,)
+

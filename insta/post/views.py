@@ -17,7 +17,6 @@ class IndexView(ListView):
     model = Post
     template_name = "post/index.html"
     context_object_name = "posts"
-    ordering = ["-created_at"]
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
@@ -76,7 +75,7 @@ class ProfileView(LoginRequiredMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user_id = self.kwargs.get("user_id")
-        context["user_post"] = Post.objects.filter(author__id=user_id).order_by("-created_at")
+        context["user_post"] = Post.objects.filter(author__id=user_id)
         return context
 
 class ProfileSetView(LoginRequiredMixin, UpdateView):
