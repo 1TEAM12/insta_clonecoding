@@ -29,7 +29,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = "post/new_post.html"
-    
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -68,7 +67,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return post.author == user
 
 
-class ProfileView(DetailView):
+class ProfileView(LoginRequiredMixin,DetailView):
     model = User
     template_name = "post/profile.html"
     pk_url_kwarg = "user_id"

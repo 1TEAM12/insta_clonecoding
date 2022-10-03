@@ -8,4 +8,3 @@ from allauth.account.views import PasswordChangeView
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     def get_success_url(self):
         return reverse("profile", kwargs={"user_id":self.request.user.id })
-    
