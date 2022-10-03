@@ -125,6 +125,11 @@ body {
 	height: 60px;
 }
 
+.sprite_gear_icon {
+	background: url('/static/imgs/background01.png') no-repeat -323px -26px;
+	width: 24px;
+	height: 24px;
+}
 
 /*-------------------------------------//icons*/
 

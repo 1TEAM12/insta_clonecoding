@@ -16,7 +16,12 @@
                 <div class="detail">
                     <div class="top">
                         <div class="user_name">{{ profile_user.username }}</div>
-                        <a href="profile_edit.html" class="profile_edit">프로필편집</a>
+                        {% if profile_user == user%}
+                            <a href="{% url 'profile-update' %}" class="profile_edit">프로필편집</a>
+                            <a href="{% url 'account_change_password' %}">
+                                <div class="sprite_gear_icon"></div>
+                            </a> 
+                        {% endif %}
                     </div>
                     <div>
                         <p class="cp-chip intro">{{ profile_user.intro }}</p>

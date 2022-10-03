@@ -3,19 +3,19 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block title %}환영합니다! | Sparkling Coffee Club {% endblock title %}
+{% block title %}프로필 설정 | Sparkling Coffee Club {% endblock title %}
 
 {% block content %}
 <div id="main_container">
 <div class="account-background">
   <main class="profile-form">
     <p class="welcome-message">
-      {{user.username}}환영합니다! <strong>프로필</strong>을 작성해주세요
+      {{user.username}}님 환영합니다! <strong>프로필</strong>을 작성해주세요.
     </p>
     <form method="post" enctype="multipart/form-data" autocomplete="off">
       {% csrf_token %}
       <div class="profile">
-        <div class="profile-pic cp-avatar large" style="background-image: url('{{ user.profile_pic.url }}')"></div>
+        <div class="profile-pic cp-avatar large" style="background-image: url('{{ user.profile_image.url }}')"></div>
         <div class="file">
           {{ form.profile_image }}
         </div>
