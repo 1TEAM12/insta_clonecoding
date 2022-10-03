@@ -3,6 +3,7 @@
 .contents{
     max-width:933px;
     display: flex;
+    justify-content: space-between;
     border: 1px solid rgba(0,0,0,.0975);
     border-radius: 3px;
     background: #fff;
@@ -11,13 +12,16 @@
 .contents .img_section{
     overflow: hidden;
     max-width: 598px;
+    width: 100%;
     border-right: 1px solid rgba(0,0,0,.0975);
-
+    display: flex;
+    align-items: center;
 }
 
 .contents .img_section .trans_inner{
     /*width: 2448px;*/
     font-size: 0;
+    margin: auto;
 }
 
 .contents .img_section .trans_inner > div{
