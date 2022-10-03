@@ -46,9 +46,27 @@
                     </p> {% endcomment %}
                 </div>
             </div>
+            <hr size="3">
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 20px;">
+                <a href="">
+                    <div style="margin-right: 40px; display: flex; justify-content: center;">
+                        <div class="sprite_camera_icon" style="margin-right: 10px;"></div>게시글
+                    </div>
+                </a>
+                <a href="">
+                    <div style="margin-right: 40px; display: flex; justify-content: center;">
+                        <div class="sprite_bookmark_outline" style="margin-right: 10px;"></div>저장됨
+                    </div>
+                </a>
+                <a href="">
+                    <div style="margin-right: 40px; display: flex; justify-content: center;">
+                        <div class="sprite_heart_icon_outline" style="margin-right: 10px;"></div>저장됨
+                    </div>
+                </a>
+            </div>
             <div class="mylist_contents contents_container active">
                 {% for post in user_post %}
-                    <div class="pic">
+                    <div class="pic" style="width: 100%">
                         <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
                     </div>
                 {% endfor %}
