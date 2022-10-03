@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    #post urls
     path('', views.IndexView.as_view(), name="index"),
     path(
         'post/<int:post_id>/',
@@ -23,5 +24,8 @@ urlpatterns = [
         views.PostDeleteView.as_view(),
         name="post-delete",
     ),
+    
+    #profile urls
     path("users/<int:user_id>/", views.ProfileView.as_view(), name="profile"),
+    path("set-profile/",views.ProfileSetView.as_view(), name="profile-set"),
 ]

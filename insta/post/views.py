@@ -9,7 +9,7 @@ from django.views.generic import (
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from user.models import User
-from .forms import PostForm
+from .forms import PostForm,ProfileForm
 
 # Create your views here.
 
@@ -79,3 +79,14 @@ class ProfileView(DetailView):
         user_id = self.kwargs.get("user_id")
         context["user_post"] = Post.objects.filter(author__id=user_id).order_by("-created_at")
         return context
+
+class ProfileSetView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = "post/profile_set_form.html"
+    
+    def get_object(self, queryset=None):
+        return self.request.user
+    
+    def get_success_url(self):
+        return reverse("index")
