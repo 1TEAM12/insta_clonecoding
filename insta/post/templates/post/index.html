@@ -148,8 +148,7 @@
                     <div class="more">모두 보기</div>
                 </header>
                 <div class="scroll_inner">
-                    {% for user in users %}
-                    {% if user != following %}
+                    {% for user in users %}   
                     <div class="thumb_user" style="display: flex; flex-direction: row; justify-content: space-between;">
                         <div style="display: flex; align-content: center;">
                             <div class="profile_thumb">
@@ -167,7 +166,7 @@
                                 action="{% url 'process-follow' user.id %}"
                                 method="post">
                                 {% csrf_token %}
-                                {% if user in following %}
+                                {% if user in user.following %}
                                     <button class="btn btn-link" style="text-decoration: none; border: 0.5px solid lightgray; font-size: 13px; color: black;" type="submit">
                                         언팔로우
                                     </button>
@@ -179,7 +178,6 @@
                             </form>
                         </div>
                     </div>
-                    {% endif %}
                     {% endfor %}
                 </div>
             </article>
