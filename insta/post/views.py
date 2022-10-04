@@ -30,9 +30,10 @@ class IndexView(LoginRequiredMixin, ListView):
         
         user = self.request.user
         if user.is_authenticated:
-            context['likes_post'] = Like.objects.filter(user=user).exists()            
+            context['likes_post'] = Like.objects.filter(user=user).exists()  
+            context['latest_following_post'] = Post.objects.filter(author__followers=user)
         return context 
-    
+
 #Post 모든 페이지    
 class AllPostView(LoginRequiredMixin, ListView):
     model = Post
@@ -186,9 +187,19 @@ class ProfileView(LoginRequiredMixin,DetailView):
         profile_user_id = self.kwargs.get('user_id')
         if user.is_authenticated:
             context['is_following'] = user.following.filter(id=profile_user_id).exists()
-        context["user_post"] = Post.objects.filter(author__id=profile_user_id)[:4]
+        context["user_post"] = Post.objects.filter(author__id=profile_user_id)
         return context
+
+#Like 저장됨 페이지
+class PostLikeListView(LoginRequiredMixin, ListView):
+    model = Post
+    context_object_name = 'liked_posts'
+    template_name = 'post/post_like_list.html'
+    pk_url_kwarg = "user_id"
     
+    def get_queryset(self):
+        return Post.objects.filter(likes__user=self.request.user)
+
 #Follow 기능 
 class ProcessFollowView(LoginRequiredMixin, View):
     http_method_names = ['post']
@@ -231,24 +242,6 @@ class FollowerListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['profile_user_id'] = self.kwargs.get('user_id')
         return context
-    
-#팔로우 한 사람만의 list 페이지
-class FollowingPostListView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        context = {}
-        context['latest_posts'] = Post.objects.all()
-        user = self.request.user
-        if user.is_authenticated:
-            context['latest_following_reviews'] = Post.objects.filter(author__followers=user)
-        return render(request, 'post/user_post_list.html', context)
-    
-class FollowingReviewListView(LoginRequiredMixin, ListView):
-    model = Post
-    context_object_name = 'following_posts'
-    template_name = 'posts/following_post_list.html'
-
-    def get_queryset(self):
-        return Post.objects.filter(author__followers=self.request.user)
     
 #profile 설정
 class ProfileSetView(LoginRequiredMixin, UpdateView):

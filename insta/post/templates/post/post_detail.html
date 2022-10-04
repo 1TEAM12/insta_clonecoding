@@ -27,7 +27,7 @@
                     </div>
                     <div class="detail--right_box">
                         <header class="top">
-                            <div class="user_container">
+                            <div class="user_container" style="align-items:flex-start">
                                 <div class="profile_img">
                                     <a href="{% url 'profile' post.author.id %}">
                                         <img src="{{ post.author.profile_image.url }}" alt="프로필 사진">
@@ -60,14 +60,9 @@
                                     <p>
                                         <div class="user_container-detail">
                                             <div class="user">
-                                                <div class="profile_img">
-                                                    <a href="{% url 'profile' comment.author.id %}">
-                                                        <img src="{{ comment.author.profile_image.url }}" alt="프로필 사진">
-                                                    </a>
-                                                </div>
-                                                <a href={% url 'profile' comment.author.id %}><img></a>
+                                                <a href={% url 'profile' comment.author.id %}><img src="{{ comment.author.profile_image.url }}" alt="프로필 사진"></a>
                                             </div>
-                                            <div class="comment"style="margin-top:20px; word-break:break-all;word-wrap:break-word; width:250px">
+                                            <div class="comment"style="word-break:break-all;word-wrap:break-word; width:250px">
                                                 <span class="user_id">{{ comment.author.username }}</span>{{ comment.content }}
                                                 <div class="time">
                                                     {% comment %} 좋아요 {{comment.likes.count}} 개 {% endcomment %}
@@ -89,10 +84,10 @@
                                                     </div>
                                                     <div>
                                                         {% comment %} 댓글 좋아요 일단은 주석처리! {% endcomment %}
-                                                        {% comment %} <form action="{% url 'process-like' comment_ctype_id comment.id %}" method="post">
+                                                        {% comment %} <form action="{% url 'process-like' comment_ctype_id comment.id %}" method="post"> 
                                                             {% csrf_token %}
                                                             <button type="submit"><div class="sprite_small_heart_icon_outline"></div></button>
-                                                        </form> {% endcomment %}
+                                                        </form>  {% endcomment %}
                                                     </div>
                                                 </div>
                                             </div>

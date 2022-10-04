@@ -1,10 +1,12 @@
 {% extends "post_base/base_with_header.html" %}
 
 {% load static %}
+
 {% block title %}
-    {{ profile_user.username }}
+    {{ user.username }}
     | Sparkling Coffee Club
 {% endblock title%}
+
 {% block content %}
     <section id="container">
         <div id="main_container">
@@ -12,61 +14,66 @@
                 <div class="hori_cont">
                     <div class="profile_wrap">
                         <div class="profile_img">
-                            <img src="{{ profile_user.profile_image.url }}" alt="프로필이미지">
+                            <img src="{{ user.profile_image.url }}" alt="프로필이미지">
                         </div>
                     </div>
                     <div class="detail">
                         <div class="top">
-                            <div class="user_name">{{ profile_user.username }}</div>
-                            {% if user.is_authenticated and user != profile_user %}
-                            <form
-                                class="follow-button"
-                                action="{% url 'process-follow' profile_user.id %}"
-                                method="post">
-                                {% csrf_token %}
-                                {% if is_following %}
-                                    <button class="btn btn-link" style="text-decoration: none; border: 0.5px solid lightgray; font-size: 13px; color: black;" type="submit">
-                                        언팔로우
-                                    </button>
-                                {% else %}
-                                    <button class="btn btn-primary" style="font-size: 13px;" type="submit">
-                                        팔로우
-                                    </button>
-                                {% endif %}
-                            </form>
+                            <div class="user_name">{{ user.username }}</div>
+                            {% if user.is_authenticated and user != user %}
+                                <form
+                                    class="follow-button"
+                                    action="{% url 'process-follow' user.id %}"
+                                    method="post">
+                                    {% csrf_token %}
+                                    {% if is_following %}
+                                        <button
+                                            class="btn btn-link"
+                                            style="text-decoration: none; border: 0.5px solid lightgray; font-size: 13px; color: black;"
+                                            type="submit">
+                                            언팔로우
+                                        </button>
+                                    {% else %}
+                                        <button class="btn btn-primary" style="font-size: 13px;" type="submit">
+                                            팔로우
+                                        </button>
+                                    {% endif %}
+                                </form>
                             {% endif %}
-                            {% if profile_user == user%}
+                            {% if user == user %}
                                 <a href="{% url 'profile-update' %}" class="profile_edit">프로필 편집</a>
-                                <a href="{% url 'account_change_password' %}" style="border: none; width: 65px;">
+                                <a
+                                    href="{% url 'account_change_password' %}"
+                                    style="border: none; width: 65px;">
                                     <div class="sprite_gear_icon"></div>
                                 </a>
                             {% endif %}
                         </div>
                         <div>
-                            <p>{{ profile_user.intro }}</p>
+                            <p>{{ user.intro }}</p>
                         </div>
                         <div class="middle">
                             <div style="margin-right: 50px;">
                                 게시물
-                                {{ profile_user.post.count }}
+                                {{ user.post.count }}
                             </div>
                             <div style="margin-right: 50px;">
-                                <a href="{% url 'follower-list' profile_user.id %}">
+                                <a href="{% url 'follower-list' user.id %}">
                                     팔로워
-                                    {{ profile_user.followers.count }}
+                                    {{ user.followers.count }}
                                 </a>
                             </div>
                             <div>
-                                <a href="{% url 'following-list' profile_user.id %}">
+                                <a href="{% url 'following-list' user.id %}">
                                     팔로잉
-                                    {{ profile_user.following.count }}
+                                    {{ user.following.count }}
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr size="3">
-                {% if user == profile_user %}
+                {% if user == user %}
                 <div
                     style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 20px;">
                     <a href="{% url 'profile' user.id %}">
@@ -88,7 +95,7 @@
                 {% endif %}
                 <br>
                 <div class="mylist_contents contents_container active">
-                    {% for post in user_post %}
+                    {% for post in liked_posts %}
                         <div class="pic" style="width: 100%">
                             <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
                         </div>
@@ -97,4 +104,5 @@
             </section>
         </div>
     </section>
+
 {% endblock content %}
