@@ -84,6 +84,7 @@
                         </div>
                     </a>
                 </div>
+<<<<<<< HEAD
                 <br>
                 <div class="mylist_contents contents_container active">
                     {% for post in user_post %}
@@ -91,6 +92,37 @@
                             <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
                         </div>
                     {% endfor %}
+=======
+            </div>
+            <hr size="3">
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 20px;">
+                <a href="">
+                    <div style="margin-right: 40px; display: flex; justify-content: center;">
+                        <div class="sprite_camera_icon" style="margin-right: 10px;"></div>게시글
+                    </div>
+                </a>
+                <a href="">
+                    <div style="margin-right: 40px; display: flex; justify-content: center;">
+                        <div class="sprite_bookmark_outline" style="margin-right: 10px;"></div>저장됨
+                    </div>
+                </a>
+                <a href="">
+                    <div style="margin-right: 40px; display: flex; justify-content: center;">
+                        <div class="sprite_heart_icon_outline" style="margin-right: 10px;"></div>저장됨
+                    </div>
+                </a>
+            </div>
+            <div class="mylist_contents contents_container active">
+                {% for post in user_post %}
+                    <div class="pic" style="width: 100%">
+                        <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="bookmark_contents contents_container">
+                <div class="pic">
+                    <a href="#"><img src="imgs/img_section/img03.jpg" alt=""></a>
+>>>>>>> 663166e111db2b896cca0a24a70f59a32b450119
                 </div>
             </section>
         </div>
