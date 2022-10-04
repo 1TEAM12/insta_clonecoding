@@ -6,7 +6,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 # Create your models here.
 class Post(models.Model):
     image = models.ImageField(upload_to="post_pics")
-    content = models.TextField()
+    content = models.TextField(max_length=180)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     
@@ -20,7 +20,7 @@ class Post(models.Model):
         ordering = ['-created_at']
 
 class Comment(models.Model):
-    content = models.TextField(max_length=500, blank=False)
+    content = models.TextField(max_length=50, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     

@@ -2,7 +2,7 @@
 
 .contents{
     max-width:933px;
-    max-height:600px;
+    max-height:100%;
     display: flex;
     justify-content: space-between;
     border: 1px solid rgba(0,0,0,.0975);

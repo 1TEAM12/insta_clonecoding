@@ -1,14 +1,14 @@
 {% extends "post_base/base_detail_with_header.html" %}
 
 {% block post-detail-style %}
-<style>   
-.detail_comment_field {
-    display : flex;
-    flex-direction :row;
-    justify-content: center;
-    align-items: center;
-}
-</style>
+    <style>
+        .detail_comment_field {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 {% endblock %}
 
 {% load widget_tweaks %}
@@ -36,12 +36,12 @@
                                 <div class="user_name">
                                     <div class="nick_name">{{post.author.username}}</div>
                                     <div class="country">{{post.author.email}}</div>
+                                    <div style="margin-top:20px; word-break:break-all;word-wrap:break-word; width:250px">{{ post.content }}</div>
                                 </div>
                             </div>
                             {% if post.author == user %}
                                 <div class="sprite_more_icon" data-name="more">
                                     <ul class="toggle_box">
-                                        <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
                                         <li>
                                             <a href="{% url 'post-update' post.id %}">수정</a>
                                         </li>
@@ -50,28 +50,11 @@
                                         </li>
                                     </ul>
                                 </div>
-                            {% else %}
-                                <div class="sprite_more_icon" data-name="more">
-                                    <ul class="toggle_box">
-                                        <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
-                                    </ul>
-                                </div>
                             {% endif %}
 
                         </header>
 
                         <section class="scroll_section">
-                            <div class="admin_container">
-                                <div class="admin">
-                                    <a href="{% url 'profile' post.author.id %}">
-                                        <img src="{{ post.author.profile_image.url }}" alt="user">
-                                    </a>
-                                </div>
-                                <div class="comment">
-                                    <span class="user_id">{{ post.author.username }}</span>{{ post.content }}
-                                    <div class="time">{{ post.created_at }}</div>
-                                </div>
-                            </div>
                             {% for comment in post.comments.all %}
                                 <p>
                                     <p>
@@ -84,9 +67,10 @@
                                                 </div>
                                                 <a href={% url 'profile' comment.author.id %}><img></a>
                                             </div>
-                                            <div class="comment">
+                                            <div class="comment"style="margin-top:20px; word-break:break-all;word-wrap:break-word; width:250px">
                                                 <span class="user_id">{{ comment.author.username }}</span>{{ comment.content }}
                                                 <div class="time">
+                                                    {% comment %} 좋아요 {{comment.likes.count}} 개 {% endcomment %}
                                                     {{ comment.created_at }}</div>
                                                 <div class="icon_wrap">
                                                     <div class="more_trigger">
@@ -103,7 +87,13 @@
                                                             </div>
                                                         {% endif %}
                                                     </div>
-                                                    <div></div>
+                                                    <div>
+                                                        {% comment %} 댓글 좋아요 일단은 주석처리! {% endcomment %}
+                                                        {% comment %} <form action="{% url 'process-like' comment_ctype_id comment.id %}" method="post">
+                                                            {% csrf_token %}
+                                                            <button type="submit"><div class="sprite_small_heart_icon_outline"></div></button>
+                                                        </form> {% endcomment %}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,11 +105,19 @@
                                     <div class="left_icons">
                                         <form action="{% url 'process-like' post_ctype_id post.id %}" method="post">
                                             {% csrf_token %}
-                                                {% if likes_post %}
-                                                    <input type="submit" class="sprite_filled__heart_icon" name="39" data-name="heartbeat"></input>
-                                                {% else %}
-                                                    <input type="submit" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></input>
-                                                {% endif %}
+                                            {% if likes_post %}
+                                                <input
+                                                    type="submit"
+                                                    class="sprite_filled__heart_icon"
+                                                    name="39"
+                                                    data-name="heartbeat"></input>
+                                            {% else %}
+                                                <input
+                                                    type="submit"
+                                                    class="sprite_heart_icon_outline"
+                                                    name="39"
+                                                    data-name="heartbeat"></input>
+                                            {% endif %}
                                         </form>
                                     </div>
 
@@ -138,23 +136,25 @@
                                     action="{% url 'comment-create' post.id %}"
                                     method="post">
                                     {% csrf_token %}
-                                    <div class="detail_comment_field" style = "height: 35px; font-size : 13px;">
+                                    <div class="detail_comment_field" style="height: 35px; font-size : 13px;">
                                         {{ form.content |attr:"placeholder:댓글 달기..."|attr:"style:border:none"|attr:'style:float:left'}}
-                                        <button type="submit"style=" border:none; background:none; float:right; font-size:13px; color:skyblue;">게시</button>
+                                        <button
+                                            type="submit"
+                                            style=" border:none; background:none; float:right; font-size:13px; color:skyblue;">게시</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                </article>
-            </div>
-        </section>
-    </div>
-    <div class="del_pop">
-        <div class="btn_box">
-            <div class="del">삭제</div>
-            <div class="cancel">취소</div>
+                    </article>
+                </div>
+            </section>
         </div>
-    </div>
+        <div class="del_pop">
+            <div class="btn_box">
+                <div class="del">삭제</div>
+                <div class="cancel">취소</div>
+            </div>
+        </div>
 
-</section>
+    </section>
 {% endblock content %}
