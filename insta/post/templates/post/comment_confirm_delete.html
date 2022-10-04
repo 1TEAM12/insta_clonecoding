@@ -1,0 +1,50 @@
+{% extends "post_base/base_with_header.html" %}
+
+{% block post-detail-style %}
+<style>   
+/* .content {
+    display : flex;
+    flex-direction :column;
+    justify-content: center;
+    align-items: center;
+} */
+.buttons {
+    display : flex;
+    flex-direction :row;
+    justify-content: center;
+    align-items: center;
+}
+delete-button {
+  text-decoration: none;
+}
+
+delete-button:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+{% endblock %}
+
+{% block title %}댓글 삭제 | Sparkling Coffee Club{% endblock title %}
+
+{% block content %}
+    <div id="main_container">
+        <div class="form_container ">
+            <main class="site-body">
+                <form class="cp-dialog confirm-delete" method="post">
+                    {% csrf_token %}
+                    <span class="content" sytle="margin:auto">정말 댓글을 삭제하시겠습니까?</span>
+                    <div class="buttons">
+                        <button class="btn" type="submit">삭제</button>
+                        <!-- <a class="cp-button secondary" href="{% url 'post-detail' comment.post.id %}">취소</a> -->
+                        <!-- <p class="delete-button"> -->
+                            <a href="{% url 'post-detail' comment.post.id %}">취소</a>
+                        <!-- </p> -->
+                        
+                    </div>    
+                </form>
+            </main>
+        </div>
+    </div>
+{% endblock content %}

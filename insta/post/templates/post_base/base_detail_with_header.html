@@ -1,6 +1,6 @@
 {% extends "post_base/base_detail.html" %}
 {% load static %}
-
+{% block post-detail-style %} {% endblock %}
 {% block header %}
 
 {% if user.is_authenticated %}
@@ -12,18 +12,22 @@
                         <div class="sprite_write_logo"></div>
                     </a>
                 </h1>
-                <div class="search_box">
-                    <input type="text" placeholder="검색" id="search-field">
+                <form action="{% url 'search' %}" method="get">
+                    <div class="search_box">
+                        <input name="query" type="text" placeholder="검색" id="search-field" >
                         <div class="fake_field">
                             <span class="sprite_small_search_icon"></span>
                             <span>검색</span>
+                            <button style="display:none" type="submit"></button>
                         </div>
-                </div>
+                    </div>
+                </form>
+
                 <div class="right_icons">
                     <a href="{% url 'post-create' %}">
                         <div class="sprite_camera_icon"></div>
                     </a>
-                    <a href="#">
+                    <a href="{% url 'post-all' %}">
                         <div class="sprite_compass_icon"></div>
                     </a>
                     <a href="#">

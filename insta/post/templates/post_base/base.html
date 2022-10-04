@@ -16,8 +16,10 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'user/favicon/favicon.ico' %}">
 
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    {% block index-style %} {% endblock %}
 
     <title>{% block title %}Sparkling Coffee Club{% endblock title %}</title>
+
   </head>
   <body>
     {% block header %}{% endblock header %}

@@ -11,6 +11,6 @@ class UserInline(admin.StackedInline):
     verbose_name = 'Follower'
     verbose_name_plural = 'Followers'
     
-UserAdmin.fieldsets += (("Profile fields", {"fields": ("profile_image", "intro", "following")}),)
+UserAdmin.fieldsets += (("Profile fields", {"fields": ("profile_image", "intro", "following")}),) #Admin Field 커스터마이징
 UserAdmin.inlines = (UserInline,)
 

@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'user/styles/detail-page.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'user/favicon/favicon.ico' %}">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
+    {% block post-detail-style %} {% endblock %}
     <title>{% block title %}Sparkling Coffee Club{% endblock title %}</title>
   </head>
   <body>
@@ -21,6 +21,6 @@
     {% block content %}{% endblock content %}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="{% static 'user/js/main.js' %}"></script>
-
+    
 </body>
 </html>

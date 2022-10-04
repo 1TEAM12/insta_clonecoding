@@ -33,8 +33,19 @@ body {
 .sprite_heart_icon_outline {
     display: inline-block;
     background: url('/static/imgs/background01.png') no-repeat -52px -261px;
+    border: 0;
     width: 24px;
     height: 22px;
+    font-size:0;
+}
+
+.sprite_filled__heart_icon {
+    display: inline-block;
+	background: url('/static/imgs/background01.png') no-repeat -26px -261px;
+    border: 0;
+	width: 24px;
+	height: 22px;
+    font-size:0;
 }
 
 .sprite_small_search_icon {
@@ -75,6 +86,12 @@ body {
     background: url('/static/imgs/background01.png') no-repeat -159px -286px;
     width: 19px;
     height: 24px;
+}
+.sprite_small_filled__heart_icon {
+    display: inline-block;
+	background: url('/static/imgs/background01.png') no-repeat -323px -287px;
+	width: 12px;
+	height: 11px;
 }
 
 .sprite_small_heart_icon_outline {
@@ -120,12 +137,14 @@ body {
 }
 
 .sprite_insta_color_camera{
+    display: inline-block;
 	background: url('/static/imgs/background01.png') no-repeat -74px -128px;
 	width: 60px;
 	height: 60px;
 }
 
 .sprite_gear_icon {
+    display: inline-block;
 	background: url('/static/imgs/background01.png') no-repeat -323px -26px;
 	width: 24px;
 	height: 24px;

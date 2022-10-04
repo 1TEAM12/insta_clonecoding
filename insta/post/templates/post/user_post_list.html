@@ -18,37 +18,38 @@
                     <div class="detail">
                         <div class="top">
                             <div class="user_name">{{ profile_user.username }}</div>
-                            {% if user.is_authenticated and user != profile_user %}
+                            {% if profile_user == user%}
+                                <a href="{% url 'profile-update' %}" class="profile_edit">프로필편집</a>
+                                <a href="{% url 'account_change_password' %}">
+                                    <div class="sprite_gear_icon"></div>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <p class="cp-chip intro">{{ profile_user.intro }}</p>
+                        </div>
+                        {% if user.is_authenticated and user != profile_user %}
                             <form
                                 class="follow-button"
                                 action="{% url 'process-follow' profile_user.id %}"
                                 method="post">
                                 {% csrf_token %}
                                 {% if is_following %}
-                                    <button class="btn btn-link" style="text-decoration: none; border: 0.5px solid lightgray; font-size: 13px; color: black;" type="submit">
+                                    <button class="cp-button small secondary" type="submit">
                                         언팔로우
                                     </button>
                                 {% else %}
-                                    <button class="btn btn-primary" style="font-size: 13px;" type="submit">
+                                    <button class="cp-button small" type="submit">
                                         팔로우
                                     </button>
                                 {% endif %}
+
                             </form>
-                            {% endif %}
-                            {% if profile_user == user%}
-                                <a href="{% url 'profile-update' %}" class="profile_edit">프로필 편집</a>
-                                <a href="{% url 'account_change_password' %}" style="border: none; width: 65px;">
-                                    <div class="sprite_gear_icon"></div>
-                                </a>
-                            {% endif %}
-                        </div>
-                        <div>
-                            <p>{{ profile_user.intro }}</p>
-                        </div>
+                        {% endif %}
                         <div class="middle">
                             <div style="margin-right: 50px;">
                                 게시물
-                                {{ profile_user.post.count }}
+                                {{ profile_user.posts.count }}
                             </div>
                             <div style="margin-right: 50px;">
                                 <a href="{% url 'follower-list' profile_user.id %}">
@@ -56,7 +57,7 @@
                                     {{ profile_user.followers.count }}
                                 </a>
                             </div>
-                            <div>
+                            <div style="margin-right: 50px;">
                                 <a href="{% url 'following-list' profile_user.id %}">
                                     팔로잉
                                     {{ profile_user.following.count }}
@@ -84,7 +85,6 @@
                         </div>
                     </a>
                 </div>
-                <br>
                 <div class="mylist_contents contents_container active">
                     {% for post in user_post %}
                         <div class="pic" style="width: 100%">

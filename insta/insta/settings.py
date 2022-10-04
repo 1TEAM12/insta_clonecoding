@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sites', 
     'user',
     'post',
-    'widget_tweaks',
+    'widget_tweaks', #템플릿 변수의 속성값을 쉽게 정의
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount', #소셜로그인
+    'allauth.socialaccount.providers.kakao', #카카오 소셜로그인
 ]
 
 MIDDLEWARE = [
@@ -56,8 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'post.middleware.ProfileSetupMiddleware',
-
-]
+ ] #request가 아래에서 위로 response가 위에서 아래로 페이지를 접근할 때 반드시 거쳐야 하는 로직
 
 SITE_ID = 1
 
@@ -100,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'user.validators.CustomPasswordValidator',
     }
-]
+] #비밀번호 유효성 검사할 때 커스터마이징한 비밀번호로 사용하겠다는 뜻
 
 
 # Internationalization
@@ -120,11 +119,11 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
 BASE_DIR/'static',
-]
+] #static 경로를 프로젝트폴더와 동일 선상으로 Base
 
 STATIC_URL = 'static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  #이미지 저장되는 경로는 media로 베이스 설정
+MEDIA_URL = '/uploads/' #미디어 경로를 http://127.0.0.1:8000/uploads/....
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -132,30 +131,31 @@ MEDIA_URL = '/uploads/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Auth settings
-AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "user.User" #allauth는 model을 제공해주지 않기에 User모델을 가져옴
 
+#allauth 기본 세팅
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
-]
+] 
 
-ACCOUNT_SIGNUP_REDIRECT_URL = "account_login" 
-LOGIN_REDIRECT_URL = "index" 
-LOGIN_URL = "account_login"
-ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_SESSION_REMEMBER = True
-SESSION_COOKIE_AGE = 3600
-ACCOUNT_SIGNUP_FORM_CLASS = "user.forms.SignupForm" 
-ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True 
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True 
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL ="account_email_confirmation_done"
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_email_confirmation_done"
+ACCOUNT_SIGNUP_REDIRECT_URL = "account_login" #회원가입하면 어디로 redirect할지 정의
+LOGIN_REDIRECT_URL = "index"  #로그인하면 어디로 redirect할지 정의
+LOGIN_URL = "account_login" #Login url 정의 
+ACCOUNT_LOGOUT_ON_GET = True #logout 페이지를 거치지 않고 바로 Logout 되게함 (기본값 False)
+ACCOUNT_AUTHENTICATION_METHOD = "email" # 로그인시 username 이 아니라 email을 사용하게 하는 설정(기본값 username)
+ACCOUNT_EMAIL_REQUIRED = True  ## 회원가입시 필수 이메일을 필수항목으로 만들기 (기본값 False)
+ACCOUNT_SESSION_REMEMBER = True #브라우저를 나가더라도 브라우저가 자동으로 session을 저장하도록 (기본값 False)
+SESSION_COOKIE_AGE = 3600 #로그인 후 session cookie의 지속시간 (기본값 2주/초단위) 
+ACCOUNT_SIGNUP_FORM_CLASS = "user.forms.SignupForm" #기존의 signup form을 쓰지않고 커스터 마이징한 form을 가져다 씀 
+ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = True  #비밀번호가 틀리면 새로고침되면서 초기화 되는 값을 저장하게함(기본값 False)
+ACCOUNT_EMAIL_VERIFICATION = "mandatory" #이메일 인증은 반드시 하도록(기본값 optional)
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True # 유저가 받은 링크를 클릭하면 회원가입 완료되게끔 (기본값 False)
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL ="account_email_confirmation_done" #이메일 인증이 완료되었을 때 어디로 리디렉트 되게할지(로그인인 상태)
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_email_confirmation_done" #이메일 인증이 완료되었을 때 어디로 리디렉트 되게할지(로그아웃인 상태)
 
 
 #Email settings

@@ -1,5 +1,4 @@
 
-
 .hori_cont{
     display: flex;
     margin-bottom: 30px;
@@ -70,8 +69,9 @@
 
 
 .detail .middle > li{
-    margin-right: 35px;
+    margin-right: 30px;
 }
+
 .detail .about > span{
     display:inline-block;
     cursor: pointer;

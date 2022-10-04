@@ -3,8 +3,8 @@ from .models import Post, Comment, Like
 from django.contrib.contenttypes.admin import GenericStackedInline
 # Register your models here.
 
-
-class CommentInlie(admin.StackedInline):
+#inline(같은 줄에)
+class CommentInlie(admin.StackedInline): 
     model = Comment
 
 class LikeInlie(GenericStackedInline):
@@ -20,9 +20,12 @@ class CommentAdmin(admin.ModelAdmin):
     inlines = (
         LikeInlie,
     )
-    
+
+#Post와 PostAdmin에 등록
 admin.site.register(Post, PostAdmin)
 
+#Comment와 Commentadmin admin에 등록
 admin.site.register(Comment, CommentAdmin)
 
+#like admin에 등록
 admin.site.register(Like)

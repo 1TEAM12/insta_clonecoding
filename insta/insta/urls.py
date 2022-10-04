@@ -36,22 +36,26 @@ urlpatterns = [
         TemplateView.as_view(template_name='account/email_confirmation_required.html'),
         name='account_email_confirmation_required',
     ),
+    
     path(
         'email-confirmation-done/',
         TemplateView.as_view(template_name='account/email_confirmation_done.html'),
         name='account_email_confirmation_done',
     ),
+    
     path(
         'confirm-email/',
         TemplateView.as_view(template_name='account/confirm-email.html'),
         name='account_confirm_email',
     ),
+    
     path(
             'password/change/',
             CustomPasswordChangeView.as_view(),
             name='account_change_password',
         ),
-    path('', include('allauth.urls')),
+    
+    path('', include('allauth.urls')), #allauth에서 제공하는 url을 커스터마이징 할 때는 항상 url을 allauth보다 위에 작성 url은 위에서 아래로 작동하기 때문
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media루트 경로를 설정
