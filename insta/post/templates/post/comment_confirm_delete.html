@@ -1,28 +1,30 @@
 {% extends "post_base/base_with_header.html" %}
 
-{% block post-detail-style %}
+{% block comment-delete-style %}
 <style>   
-/* .content {
-    display : flex;
-    flex-direction :column;
-    justify-content: center;
-    align-items: center;
-} */
-.buttons {
-    display : flex;
-    flex-direction :row;
-    justify-content: center;
-    align-items: center;
-}
-delete-button {
-  text-decoration: none;
-}
+    .content {
+        display : flex;
+        flex-direction :column;
+        justify-content: center;
+        align-items: center;
+    }
+    .delete-buttons {
+        display : flex;
+        flex-direction :row;
+        justify-content: center;
+        align-items: center;
+        
+        font-size: 15px;
+     
+    }
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+    }
 
-delete-button:hover {
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-}
 </style>
 {% endblock %}
 
@@ -32,16 +34,24 @@ delete-button:hover {
     <div id="main_container">
         <div class="form_container ">
             <main class="site-body">
-                <form class="cp-dialog confirm-delete" method="post">
+                <form class="cp-dialog confirm-delete" method="post" style="display:flex; flex-direction:column; border:solid 1px skyblue; border-radius:10px; padding:10px; opacity:0.9;">
                     {% csrf_token %}
-                    <span class="content" sytle="margin:auto">정말 댓글을 삭제하시겠습니까?</span>
-                    <div class="buttons">
-                        <button class="btn" type="submit">삭제</button>
+                    <span class="content" style="text-align: center; font-size:25px; padding:10px;" >정말 댓글을 삭제하시겠습니까?</span>
+                    <div class="delete-buttons" style = 'display:flex;justify-content: center;'>
+                        <button type="submit" style='border:none;background:none;padding-right:50px'>
+                            <span class="material-symbols-outlined">
+                                check
+                            </span>
+                        </button>
+                        <button type ='button' style='border:none;background:none;color:gray' onclick = "location.href ='{% url 'post-detail' comment.post.id %}'">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
+                        </button>
                         <!-- <a class="cp-button secondary" href="{% url 'post-detail' comment.post.id %}">취소</a> -->
-                        <!-- <p class="delete-button"> -->
-                            <a href="{% url 'post-detail' comment.post.id %}">취소</a>
-                        <!-- </p> -->
-                        
+                        <!-- <p> -->
+                            <!-- <a href="{% url 'post-detail' comment.post.id %}" class="text-decoration-none">취소</a> -->
+                        <!-- </p>    -->
                     </div>    
                 </form>
             </main>

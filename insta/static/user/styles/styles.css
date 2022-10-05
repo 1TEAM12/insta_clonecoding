@@ -196,6 +196,11 @@ body{
 .contents .sprite_more_icon{
     position: relative;
 }
+.contents .follow{
+    position: relative;
+    font-size: 13px;
+    padding: 5px;
+}
 
 .contents .toggle_box{
     text-align: center;
@@ -209,16 +214,23 @@ body{
 
 .contents .sprite_more_icon.on .toggle_box{
     display: block;
+    background-color: white;
+    
+    list-style-type:none;
+    border-radius: 5px;
 }
 
 .contents .toggle_box > li{
-    padding: 5px 10px;
-    background: white;
+    padding: 10px 5px 10px 0px;
+    background: rgb(255, 255, 255);
+    text-indent: -25px;
+    font-size: 13px;
 }
 
 .contents .toggle_box > li input{
     border: none;
-    font-size: inherit;
+    font-size: 10px;
+
 }
 
 .contents .img_section{

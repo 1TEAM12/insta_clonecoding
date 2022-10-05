@@ -1,5 +1,19 @@
 {% extends "post_base/base_with_header.html" %}
 
+{% block comment-update-style %}
+
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+    }
+    </style>
+    
+{% endblock %}
+
 {% load widget_tweaks %}
 
 {% block title %}댓글 수정 | Sparkling Coffee Club{% endblock title %}
@@ -8,17 +22,27 @@
     <div id="main_container">
         <div class="form_container ">
             <main class="site-body">
-                <form class="comment-update-form" method="post">
-                    <p class="welcome-message">
+                <form class="comment-update-form" method="post" style="border:solid 3px skyblue;border-radius:10px; padding: 10px; opacity:0.9;">
+                    <p class="welcome-message" style="text-align:center; padding-top:10px;">
                         댓글을 수정해주세요!
                     </p>
                     {% csrf_token %}
-                    {{ form.content|attr:"placeholder:댓글 달기. . "|add_class:"cp-input" }}
-                    <div class="buttons">
-                        <button class="cp-button small" type="submit">완료</button>
+                    {{ form.content|attr:"placeholder:댓글 달기... "|add_class:"cp-input" }}
+                    <div class="buttons" style="text-align: center;padding-top:15px">
+                        <button type="submit" style='border:none;background:none;padding-right:50px'>
+                            <span class="material-symbols-outlined">
+                            check
+                            </span>
+                        </button>
+                        <button type ='button' style='border:none;background:none;' onclick = "location.href ='{% url 'post-detail' comment.post.id %}'">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
+                        </button>
+                        <!-- <button class="cp-button small" type="submit">완료</button>
                         <a
                             class="cp-button small secondary"
-                            href="{% url 'post-detail' comment.post.id %}">취소</a>
+                            href="{% url 'post-detail' comment.post.id %}">취소</a> -->
                     </div>
                 </form>
             </main>

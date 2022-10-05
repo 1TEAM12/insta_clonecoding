@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
 }
+a:link{text-decoration:none;}
 </style>
 {% endblock %}
 
@@ -39,23 +40,30 @@
                                 </div>
                             </div>
                             {% if post.author == user %}
-                                <div class="sprite_more_icon" data-name="more">
-                                    <ul class="toggle_box">
-                                        <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
+                                <div class="sprite_more_icon" data-name="more" >
+                                    <ul class="toggle_box" style="list-style-type: none;">
+                                        <li><input type="submit" class="follow" value="팔로우" data-name="follow" 
+                                            style="background:#5bb8f7; border-radius:5px; color:white;"></li>
                                         <li>
-                                            <a href="{% url 'post-update' post.id %}">수정</a>
-                                        </li>
+                                            <a href="{% url 'post-update' post.id %}" >수정</a>
+                                        </li>    
                                         <li>
-                                            <a href="{% url 'post-delete' post.id %}">삭제</a>
-                                        </li>
+                                            <a href="{% url 'post-delete' post.id %}" >삭제</a>
+                                        </li>                                            
                                     </ul>
                                 </div>
                             {% else %}
-                                <div class="sprite_more_icon" data-name="more">
+                                <!-- <div class="sprite_more_iconn">                               -->
+                                    <buttontype="submit" class="follow" value="팔로우" data-name="follow" 
+                                    style="background-color:#5bb8f7; border-radius:5px; color:white;">팔로우</button>
+                                    <!-- <input type="submit" class="follow" value="팔로우" data-name="follow" 
+                                    style="background-color:#5bb8f7; border-radius:5px; color:white;">                            -->
+                                <!-- </div> -->
+                                <!-- <div class="sprite_more_icon" data-name="more">
                                     <ul class="toggle_box">
-                                        <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
+                                        <li><input type="submit" class="follow" value="팔로우" data-name="follow" style="background:#5bb8f7; border-radius:5px; color: white;"></li>
                                     </ul>
-                                </div>
+                                </div> -->
                             {% endif %}
 
                         </header>
@@ -92,14 +100,14 @@
                                                     <div class="more_trigger">
                                                         {% if user == comment.author %}
                                                             <div class="sprite_more_icon" data-name="more">
-                                                                <ul class="toggle_box">
-                                                                    <li>
+                                                                <div class="toggle_box">
+                                                                    <li style="text-indent:5px">
                                                                         <a href="{% url 'comment-update' comment.id %}">수정</a>
                                                                     </li>
-                                                                    <li>
+                                                                    <li style="text-indent:5px">
                                                                         <a href="{% url 'comment-delete' comment.id %}">삭제</a>
                                                                     </li>
-                                                                </ul>
+                                                                </div>
                                                             </div>
                                                         {% endif %}
                                                     </div>
@@ -149,7 +157,7 @@
             </div>
         </section>
     </div>
-    <div class="del_pop">
+    <div class="del_pop" style= "border:solid pink">
         <div class="btn_box">
             <div class="del">삭제</div>
             <div class="cancel">취소</div>

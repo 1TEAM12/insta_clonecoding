@@ -1,6 +1,10 @@
 {% extends "post_base/base.html" %}
 {% load static %}
+
 {% block index-style %} {% endblock %}
+{% block comment-delete-style %} {% endblock %}
+{% block comment-update-style %} {% endblock %}
+
 {% block header %}
 
 {% if user.is_authenticated %}
