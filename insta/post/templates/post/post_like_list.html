@@ -95,11 +95,15 @@
                 {% endif %}
                 <br>
                 <div class="mylist_contents contents_container active">
-                    {% for post in liked_posts %}
-                        <div class="pic" style="width: 100%">
-                            <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
-                        </div>
-                    {% endfor %}
+                    {% if liked_posts %}
+                        {% for post in liked_posts %}
+                            <div class="pic" style="width: 100%">
+                                <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        게시물 없음 <div class="sprite_post_camera_icon"></div>
+                    {% endif%}
                 </div>
             </section>
         </div>

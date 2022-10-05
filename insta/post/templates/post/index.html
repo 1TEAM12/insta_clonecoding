@@ -40,101 +40,105 @@
             <section id="main_container">
                 <div class="inner">
                     <div class="contents_box">
-                        {% for post in latest_following_post %}
-                            <article class="contents">
-                                <header class="top">
-                                    <div class="user_container">
-                                        <div class="profile_img">
-                                            <a href="{% url 'profile' post.author.id %}">
-                                                <img src="{{ post.author.profile_image.url }}" alt="프로필이미지">
-                                            </a>
+                        {% if latest_following_post %}
+                            {% for post in latest_following_post %}
+                                <article class="contents">
+                                    <header class="top">
+                                        <div class="user_container">
+                                            <div class="profile_img">
+                                                <a href="{% url 'profile' post.author.id %}">
+                                                    <img src="{{ post.author.profile_image.url }}" alt="프로필이미지">
+                                                </a>
+                                            </div>
+                                            <div class="user_name">
+                                                <div class="nick_name m_text">{{post.author.username}}</div>
+                                                <div class="country s_text">{{post.author.email}}</div>
+                                            </div>
                                         </div>
-                                        <div class="user_name">
-                                            <div class="nick_name m_text">{{post.author.username}}</div>
-                                            <div class="country s_text">{{post.author.email}}</div>
-                                        </div>
-                                    </div>
-                                    {% if post.author == user %}
-                                        <div class="sprite_more_icon" data-name="more">
-                                            <ul class="toggle_box">
-                                                <li>
-                                                    <a href="{% url 'post-update' post.id %}">수정</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{% url 'post-delete' post.id %}">삭제</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    {% endif %}
-                                </header>
+                                        {% if post.author == user %}
+                                            <div class="sprite_more_icon" data-name="more">
+                                                <ul class="toggle_box">
+                                                    <li>
+                                                        <a href="{% url 'post-update' post.id %}">수정</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'post-delete' post.id %}">삭제</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    </header>
 
-                                <div class="img_section">
-                                    <div class="trans_inner">
-                                        <div><img src="{{ post.image.url }}" alt="visual01"></div>
-                                    </div>
-                                </div>
-                                <div class="bottom_icons">
-                                    <div class="left_icons">
-                                        <form action="#" method="post">{% csrf_token %}
-                                            {% if likes_post %}
-                                                <input
-                                                    type="submit"
-                                                    class="sprite_filled__heart_icon"
-                                                    name="39"
-                                                    data-name="heartbeat"></input>
-                                            {% else %}
-                                                <input
-                                                    type="submit"
-                                                    class="sprite_heart_icon_outline"
-                                                    name="39"
-                                                    data-name="heartbeat">
-                                            {% endif %}
-                                        </form>
-                                    </div>
-                                    <div class="right_icon">
-                                        <div class="sprite_bookmark_outline" data-name="bookmark"></div>
-                                    </div>
-
-                                </div>
-
-                                <div class="likes m_text">
-                                    좋아요
-                                    <span id="like-count-39">
-                                        {{ post.likes.count }}</span>
-                                    <span id="bookmark-count-39"></span>
-                                    개
-                                </div>
-                                <div class="comment_all">
-                                    <a href="{% url 'post-detail' post.id %}" style="color: gray;">댓글 모두 보기</a>
-                                </div>
-                                <div class="comment_container">
-                                    <div class="comment" id="comment-list-ajax-post37">
-                                        <div class="comment-detail">
-                                            <div class="nick_name m_text">{{ post.author.username }}</div>
-                                            <div>{{ post.content }}</div>
-                                            <div class="nick_name m_text">{{ comment.author.username }}</div>
-                                            <div>{{ comment.content }}</div>
+                                    <div class="img_section">
+                                        <div class="trans_inner">
+                                            <div><img src="{{ post.image.url }}" alt="visual01"></div>
                                         </div>
                                     </div>
+                                    <div class="bottom_icons">
+                                        <div class="left_icons">
+                                            <form action="#" method="post">{% csrf_token %}
+                                                {% if likes_post %}
+                                                    <input
+                                                        type="submit"
+                                                        class="sprite_filled__heart_icon"
+                                                        name="39"
+                                                        data-name="heartbeat"></input>
+                                                {% else %}
+                                                    <input
+                                                        type="submit"
+                                                        class="sprite_heart_icon_outline"
+                                                        name="39"
+                                                        data-name="heartbeat">
+                                                {% endif %}
+                                            </form>
+                                        </div>
+                                        <div class="right_icon">
+                                            <div class="sprite_bookmark_outline" data-name="bookmark"></div>
+                                        </div>
 
-                                </div>
-
-                                <div class="timer">{{ post.created_at }}</div>
-
-                                <form
-                                    class="comment-create-form"
-                                    action="{% url 'comment-create' post.id %}"
-                                    method="post">
-                                    {% csrf_token %}
-                                    <div class="comment_field" style="height: 20px; font-size: 13px;">
-                                        {{ form.content |attr:"placeholder:댓글 달기..."}}
-                                        <button
-                                            type="submit"
-                                            style=" border: none; background:none; float:right; font-size : 13px; color: skyblue">게시</button>
                                     </div>
-                                </form>
-                            </article>
-                        {% endfor %}
+
+                                    <div class="likes m_text">
+                                        좋아요
+                                        <span id="like-count-39">
+                                            {{ post.likes.count }}</span>
+                                        <span id="bookmark-count-39"></span>
+                                        개
+                                    </div>
+                                    <div class="comment_all">
+                                        <a href="{% url 'post-detail' post.id %}" style="color: gray;">댓글 모두 보기</a>
+                                    </div>
+                                    <div class="comment_container">
+                                        <div class="comment" id="comment-list-ajax-post37">
+                                            <div class="comment-detail">
+                                                <div class="nick_name m_text">{{ post.author.username }}</div>
+                                                <div>{{ post.content }}</div>
+                                                <div class="nick_name m_text">{{ comment.author.username }}</div>
+                                                <div>{{ comment.content }}</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="timer">{{ post.created_at }}</div>
+
+                                    <form
+                                        class="comment-create-form"
+                                        action="{% url 'comment-create' post.id %}"
+                                        method="post">
+                                        {% csrf_token %}
+                                        <div class="comment_field" style="height: 20px; font-size: 13px;">
+                                            {{ form.content |attr:"placeholder:댓글 달기..."}}
+                                            <button
+                                                type="submit"
+                                                style=" border: none; background:none; float:right; font-size : 13px; color: skyblue">게시</button>
+                                        </div>
+                                    </form>
+                                </article>
+                            {% endfor %}
+                        {% else %}
+                            팔로우를 추가해주세요<div class ="sprite_follow_icon"></div>
+                        {% endif %}
 
                     </div>
                     <input type="hidden" id="page" value="1">

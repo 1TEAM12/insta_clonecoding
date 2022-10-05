@@ -12,11 +12,15 @@
         <section class="b_inner">
             <div class="hori_cont">
                 <div class="mylist_contents contents_container active">
-                    {% for post in posts %}
-                        <div class="pic" style="width: 100%">
-                            <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
-                        </div>
-                    {% endfor %}
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="pic" style="width: 100%">
+                                <a href="{% url 'post-detail' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        게시물을 추가해주세요<div class="sprite_post_camera_icon"></div>
+                    {% endif %}
                 </div>
             </div>
         </section>

@@ -25,12 +25,9 @@ function delegationFunc(e) {
 
 function resizeFunc() {
 
-    // console.log('resize!!');
-
     if (pageYOffset >= 10) {
 
         let calcWidth = (window.innerWidth * 0.5) + 167;
-        // console.log(window.innerWidth * 0.5);
 
         sidebox.style.left = calcWidth + 'px';
     }
@@ -62,7 +59,6 @@ function scrollFunc() {
     var documentHeight = document.body.scrollHeight;
 
 
-    // console.log(pageYOffset);
 
     if (pageYOffset >= 10) {
         header.classList.add('on');
@@ -92,10 +88,7 @@ function scrollFunc() {
 
         var page = document.querySelector('#page').value;
 
-        // page = parseInt(page) + 1;
-        // page = parseInt(page) + 1;
         document.querySelector('#page').value = parseInt(page) + 1;
-        // $('#page').val(parseInt(page) + 1);
 
         callMorePostAjax(page);
 
@@ -123,7 +116,6 @@ function callMorePostAjax(page) {
         dataType: 'html',
         error: function (request, status, error) {
             alert('오류발생');
-            // alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
         },
     });
 

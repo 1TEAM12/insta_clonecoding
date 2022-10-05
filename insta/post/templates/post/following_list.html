@@ -10,7 +10,7 @@
             <main class="site-body">
                 <div class="follow-list">
                     <div class="follow-list-header">
-                        <h2>팔로잉 {{ profile_user.following.count }}</h2>
+                        <h2>팔로잉 ({{ following.count }})</h2>
                         <a class="back-link" href="{% url 'profile' profile_user_id %}">프로필로 돌아가기</a>
                     </div>
                     <hr>
@@ -51,6 +51,8 @@
                             </div>
                             {% endfor %}
                         </div>
+                    {% else %}
+                        팔로잉 없음
                     {% endif %}
                 </div>
             </main>

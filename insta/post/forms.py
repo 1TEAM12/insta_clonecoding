@@ -2,6 +2,8 @@ from django import forms
 from .models import Post, Comment
 from user.models import User
 
+from django.contrib.auth.hashers import check_password
+
 #PostForm
 class PostForm(forms.ModelForm):
     class Meta:
@@ -36,3 +38,4 @@ class CommentForm(forms.ModelForm):
             'content': forms.TextInput,
         }
 # (attrs={'class': ''}) 뒤에 갖다붙일 수도 있음 지우지말것
+

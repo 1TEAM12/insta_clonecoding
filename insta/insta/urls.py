@@ -19,6 +19,7 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from user.views import CustomPasswordChangeView
+from user import views
 
 urlpatterns = [
     #admin
@@ -54,6 +55,8 @@ urlpatterns = [
             CustomPasswordChangeView.as_view(),
             name='account_change_password',
         ),
+    
+    path('account/delete/', views.account_delete, name='account_delete'),
     
     path('', include('allauth.urls')), #allauth에서 제공하는 url을 커스터마이징 할 때는 항상 url을 allauth보다 위에 작성 url은 위에서 아래로 작동하기 때문
 ]

@@ -9,6 +9,7 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.hashers import check_password
 from django.db.models import Q 
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post, Comment, Like
@@ -41,7 +42,7 @@ class AllPostView(LoginRequiredMixin, ListView):
     context_object_name = "posts"
 
 #검색기능
-class SearchView(ListView):
+class SearchView(LoginRequiredMixin, ListView):
     model = Post
     context_object_name = 'search_results'
     template_name = 'post/search_results.html'
@@ -267,3 +268,15 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse("profile", kwargs=({"user_id": self.request.user.id}))
 
+
+
+
+# 계정 삭제 (클래스 폼으로 ㅂ)
+def account_delete(request):
+    if request.method == "POST":
+        pw_del = request.POST['pw_del']
+        user = request.user
+        if check_password(pw_del, user.password):
+            user.delete()
+            return redirect('/')
+    return render(request, 'account/account_delete.html')

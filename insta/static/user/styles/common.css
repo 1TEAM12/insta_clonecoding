@@ -150,6 +150,19 @@ body {
 	height: 24px;
 }
 
+.sprite_post_camera_icon {
+    display: inline-block;
+	background: url('/static/imgs/background02.png') no-repeat -260px -291px;
+	width: 62px;
+	height: 62px;
+}
+
+.sprite_follow_icon {
+    display: inline-block;
+	background: url('/static/imgs/background02.png') no-repeat 0 0;
+	width: 148px;
+	height: 148px;
+}
 /*-------------------------------------//icons*/
 
 #container {
