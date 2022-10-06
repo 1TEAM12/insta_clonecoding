@@ -6,12 +6,6 @@
     pointer-events:none;
 }
 
-#img_id{
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
 .post_form_container{
     max-width: 550px;
     margin: 0 auto;
