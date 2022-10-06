@@ -1,0 +1,53 @@
+{% extends "user_base/base_with_header.html" %}
+
+{% load static %}
+{% load widget_tweaks %}
+{% load socialaccount %}
+
+{% block title %}로그인 | Sparkling Coffee Club{% endblock title %}
+
+{% block content %}
+    <div id="main_container">
+        <div class="form_container ">
+            <div class="form">
+                <div class="title_cover">
+                    <a href="{% url 'account_login'%}"><h1 class="sprite_insta_big_logo title"></h1></a>
+                </div>
+                <form method="post">{% csrf_token %}
+                    {% for error in form.non_field_errors %}
+                        <div class="form-error error-message">{{ error }}</div>
+                    {% endfor %}
+                    <div>
+                        {{ form.login|add_class:"cp-input"|attr:"placeholder:이메일"|add_error_class:"error" }}
+                        {% for error in form.login.errors %}
+                            <div class="form-error error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <p>
+                        <div>
+                            {{ form.password|add_class:"cp-input"|attr:"placeholder:비밀번호"|add_error_class:"error" }}
+                            {% for error in form.password.errors %}
+                                <div class="form-error error-message">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <input type="submit" id="submit_btn" value="로그인" class="submit_btn">
+                        <hr>                        
+                        <a href="{% provider_login_url 'kakao' %}" style="text-decoration : none">
+                            <div style="background-image:url('../../static/user/assets/kakao_login_button.png'); font-size:15px; height:30px; text-align:center;border-radius:5px;padding-top:4px">카카오 로그인</div>
+                        </a>
+                        <div class="password_reset_text">
+                            <a href="{% url 'account_reset_password' %}">
+                                비밀번호를 잊으셨나요?</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="bottom_box">
+                    <div>
+                        <span>계정이 없으신가요?</span>
+                        <a class="sign_user_btn_color" href="{% url "account_signup"%}">가입하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
