@@ -1,5 +1,8 @@
 ### 내일배움캠프 2번째 프로젝트
 # Insta_Clone
+
+https://bolder-starburst-a73.notion.site/06b32514c6434ec1845ef249066a22df
+
 ## ****프로젝트 핵심 목적****
 
 - Meta의 인스타그램 클론코딩을 통한 사용자 환경(UI/UX)을 구성한다.
