@@ -20,7 +20,7 @@
 
 ### API
 
-- Facebook API
+- Kakao API
 
 ## ****🕸 와이어 프레임****
 
