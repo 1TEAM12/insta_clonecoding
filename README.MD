@@ -23,9 +23,13 @@
 - Kakao API
 
 ## ****🕸 와이어 프레임****
-
+![ex_screenshot](./img/wireframe.png)
 
 
 ## ****🎯 데이터베이스****
+![ex_screenshot](./img/erd.png)
+
 
 ## ****🎨 API 설계****
+![ex_screenshot](./img/api1.png)
+![ex_screenshot](./img/api2.png)
